@@ -42,4 +42,14 @@ fn main() {
     // Character Type
     // Declare char type using single quotes.
     let _char_type: char = 'z';
+
+    // Compound Types
+    // Tuple
+    let tup: (i8, u8, bool) = (-2, 3, false);
+    let (_x, _y, _z) = tup; // Pattern matching for destructuring a tuple.
+    let _tup_bool: bool = tup.2; // Accessing a tuple's element.
+
+    // Array
+    let _arr: [i8; 5] = [1, 2, 3, 4, 5];
+    let _short_hand_arr: [i8; 5] = [3; 5]; // This will create an array of five 3s
 }
