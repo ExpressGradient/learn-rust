@@ -6,7 +6,7 @@ fn main() {
 
     let mut _mut_var:i8 = 2; // But mutable variables can be created using the mut keyword.
     _mut_var = _mut_var + 1;
-    
+
     const _SOME_CONST:i8 = 3; // consts are always immutable, mut keyword doesn't work and type annotation must be given.
 
     // Shadowing
@@ -50,6 +50,50 @@ fn main() {
     let _tup_bool: bool = tup.2; // Accessing a tuple's element.
 
     // Array
-    let _arr: [i8; 5] = [1, 2, 3, 4, 5];
-    let _short_hand_arr: [i8; 5] = [3; 5]; // This will create an array of five 3s
+    let arr: [i8; 5] = [1, 2, 3, 4, 5];
+    let _short_hand_arr: [i8; 5] = [3; 5]; // This will create an array of five 3s.
+
+    // Functions
+    greet();
+    let _five: i8 = return_int(3);
+
+    // Control Flow
+    // If statement
+    let _if_num: i32 = if false { 5 } else { 6 };
+
+    // Loop
+    let mut counter: i32 = 0;
+    let _loop_num: i32 = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter;
+        }
+    };
+
+    // While Loop
+    counter = 5;
+    while counter != 0 {
+        println!("T-{} seconds", counter);
+        counter -= 1;
+    }
+    println!("LIFTOFF!!!");
+
+    // For Loop
+    for element in arr.iter() {
+        println!("{}", element);
+    }
+
+    // For loop with range
+    for num in (1..4).into_iter() {
+        println!("{}", num);
+    }
+}
+
+fn greet() {
+    println!("Hello User!");
+}
+
+fn return_int(input_int: i8) -> i8 {
+    input_int // You can omit the return keyword by doing this.
 }
