@@ -88,6 +88,45 @@ fn main() {
     for num in (1..4).into_iter() {
         println!("{}", num);
     }
+
+
+    // Ownership: It is a solution to manage heap data.
+
+    // Some stuff about stack and heap in notes.
+
+    /*
+    1. Each value in Rust has a variable that's called its owner.
+    2. There can only be one owner at a time.
+    3. When the owner goes out of scope, the value will be dropped.
+    */
+
+    // Ownership scope
+    {
+        {
+            let mut scope_var: i32 = 2; // scope_var's scope starts from here
+            scope_var += 1; // stuff with scope_var
+        } // scope_var goes out of scope
+
+        // String Type
+        let mut some_str: String = String::from("Hello, "); // from() from String asks for memory from memory allocator at runtime.
+        some_str.push_str("World");
+        // Memory is automatically returned when the owner goes out of scope.
+
+        // Move
+        let s1: String = String::from("some string");
+        let _s2: String = s1; // s1 is no longer valid.
+
+        // Clone - Heap data gets copied, but very expensive.
+        let s1: String = String::from("some string");
+        let _s2: String = s1.clone(); // Both s1 and s2 are valid.
+
+        // Copy
+        let x: i32 = 2;
+        let _y: i32 = x; // Both x and y are valid.
+
+        // This happens because integer types have sizes known at compile time, so they are stored on stack and easy to make copies.
+        // Types which implement the Copy trait, older vars are still usable after assignment.
+    }
 }
 
 fn greet() {
