@@ -103,8 +103,8 @@ fn main() {
     // Ownership scope
     {
         {
-            let mut scope_var: i32 = 2; // scope_var's scope starts from here
-            scope_var += 1; // stuff with scope_var
+            let mut _scope_var: i32 = 2; // scope_var's scope starts from here
+            _scope_var += 1; // stuff with scope_var
         } // scope_var goes out of scope
 
         // String Type
@@ -127,6 +127,15 @@ fn main() {
         // This happens because integer types have sizes known at compile time, so they are stored on stack and easy to make copies.
         // Types which implement the Copy trait, older vars are still usable after assignment.
     }
+
+    // References
+    {
+        let s1 = String::from("Hello, World!");
+        let len: usize = calculate_length(&s1); // Reference of s1 passed as an arg to calculate_length.
+
+        println!("{}, {}", s1, len); // s1 is perfectly valid.
+    }
+    // Some stuff about dangling pointer in notes.
 }
 
 fn greet() {
@@ -135,4 +144,16 @@ fn greet() {
 
 fn return_int(input_int: i8) -> i8 {
     input_int // You can omit the return keyword by doing this.
+}
+
+// This process of having refs as params to a fn is called borrowing.
+fn calculate_length(s: &String) -> usize {
+    s.len()
+}
+
+// Takes in mutable reference. But you can have only one mutable reference to a piece of code in a scope.
+// This to mainly prevent data races.
+// We also cannot have mutable ref when there is an immutable ref in the scope.
+fn add_pls(input_str: &mut String) {
+    input_str.push_str(" pls");
 }
